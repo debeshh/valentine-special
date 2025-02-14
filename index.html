@@ -3,108 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Special</title>
+    <title>Happy Ballentine!</title>
     <style>
         body {
-            background-color: pink;
+            background: linear-gradient(to bottom right, #ff4e50, #fc913a);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             text-align: center;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
+            min-height: 100vh;
             position: relative;
         }
-        .text {
-            font-size: 1.5rem;
+        .container {
+            padding-bottom: 100px;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 24px;
             font-weight: bold;
-            color: red;
-            margin-bottom: 10px;
+            color: #fff;
         }
         .heart-container {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            background-color: red;
-            clip-path: polygon(50% 15%, 80% 0, 100% 20%, 50% 100%, 0 20%, 20% 0);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 60vh;
+        }
+        .heart {
+            width: 200px;
+            height: 200px;
             cursor: pointer;
-            transition: transform 0.3s;
-            font-size: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .heart:hover {
+            transform: scale(1.2);
+        }
+        .instruction {
+            font-size: 20px;
+            color: #fff;
+            margin-top: 15px;
+        }
+        .message, .image-container, .qr-container {
+            display: none;
+            margin-top: 20px;
+            color: #fff;
+        }
+        .qr-container p {
+            font-size: 16px;
+        }
+        .button {
+            background-color: #ff4081;
+            border: none;
             color: white;
-        }
-        .heart-container:hover {
-            transform: scale(1.1);
-        }
-        .message {
-            display: none;
-            font-size: 2rem;
-            color: red;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
             margin-top: 20px;
-            text-shadow: 2px 2px 4px #ffcccc;
+            border-radius: 20px;
         }
-        .image {
-            display: none;
-            width: 300px;
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .emoji-bg {
-            position: absolute;
+        .floating-emojis {
+            position: fixed;
             width: 100%;
-            height: 100%;
-            font-size: 3rem;
-            opacity: 0.7;
+            height: 100vh;
+            top: 0;
+            left: 0;
             pointer-events: none;
+            z-index: -1;
         }
         .emoji {
             position: absolute;
-            animation: float 5s infinite ease-in-out;
+            font-size: 24px;
+            animation: float 5s infinite linear;
+            color: #fff;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
         }
         @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0); }
-        }
-        @media (max-width: 600px) {
-            .heart-container {
-                width: 100px;
-                height: 100px;
-            }
-            .message {
-                font-size: 1.5rem;
-            }
-            .image {
-                width: 200px;
-            }
-            .text {
-                font-size: 1.2rem;
-            }
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="emoji-bg">
-        <div class="emoji" style="top: 10%; left: 20%;">❤️🎁💋🤗</div>
-        <div class="emoji" style="top: 30%; left: 70%;">💖💝😘🎀</div>
-        <div class="emoji" style="top: 50%; left: 40%;">💕💘💞💌</div>
-        <div class="emoji" style="top: 70%; left: 10%;">😍🎁💗🥰</div>
-        <div class="emoji" style="top: 85%; left: 60%;">💖💋💝💓</div>
+    <div class="container">
+        <div class="logo">💖 Happy Ballentine! 💖</div>
+        <div class="heart-container">
+            <div class="instruction">Touch the heart ❤️... but be ready for the heat! 🔥🍷</div>
+
+            <svg class="heart" onclick="showMessage()" viewBox="0 0 24 24" fill="#a00034">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="message" id="message"><h2>Chakri kar maghiya chakri 😘🔥</h2></div>
+        <div class="image-container" id="image-container"><img src="IMG_2553.JPG" width="200"></div>
+        <button class="button" onclick="showQR()">Contribute a Ballentine 💋</button>
+        <div class="qr-container" id="qr-container">
+            <p>It's the sign of love to contribute something special on this day.<br>
+                 like your ❤️, time, or maybe a little gift 😉.</p>
+            <img src="qr.jpeg" width="150">
+        </div>
+        <div class="floating-emojis"></div>
     </div>
-    <div class="text">Touch the heart, but be ready for love overload 💋🔥</div>
-    <div class="heart-container" onclick="showContent()"></div>
-    <div class="message" id="message">💝❤️🎁💋🤗 Chakri kr maghiya chakri 💕💖💘💌</div>
-    <img src="IMG_2553.JPG" id="image" class="image" alt="Fun Image">
     <script>
-        function showContent() {
+        function showMessage() {
             document.getElementById("message").style.display = "block";
-            document.getElementById("image").style.display = "block";
+            document.getElementById("image-container").style.display = "block";
+            document.documentElement.style.overflowY = "scroll";
         }
+        function showQR() {
+            document.getElementById("qr-container").style.display = "block";
+            document.documentElement.style.overflowY = "scroll";
+        }
+        function createEmojis() {
+            const emojis = ["😘", "💋", "🍒", "👅", "😍", "🔥", "😈", "❤️"];
+            for (let i = 0; i < 30; i++) {
+                let emoji = document.createElement("div");
+                emoji.classList.add("emoji");
+                emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + "vw";
+                emoji.style.animationDuration = Math.random() * 3 + 3 + "s";
+                emoji.style.top = Math.random() * 100 + "vh";
+                document.querySelector(".floating-emojis").appendChild(emoji);
+                setTimeout(() => { emoji.remove(); }, 5000);
+            }
+        }
+        setInterval(createEmojis, 1000);
     </script>
 </body>
 </html>
