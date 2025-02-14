@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Special</title>
+    <style>
+        body {
+            background-color: pink;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        .text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 10px;
+        }
+        .heart-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            clip-path: polygon(50% 15%, 80% 0, 100% 20%, 50% 100%, 0 20%, 20% 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-size: 2rem;
+            color: white;
+        }
+        .heart-container:hover {
+            transform: scale(1.1);
+        }
+        .message {
+            display: none;
+            font-size: 2rem;
+            color: red;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px #ffcccc;
+        }
+        .image {
+            display: none;
+            width: 300px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .emoji-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            font-size: 3rem;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .emoji {
+            position: absolute;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        @media (max-width: 600px) {
+            .heart-container {
+                width: 100px;
+                height: 100px;
+            }
+            .message {
+                font-size: 1.5rem;
+            }
+            .image {
+                width: 200px;
+            }
+            .text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-bg">
+        <div class="emoji" style="top: 10%; left: 20%;">❤️🎁💋🤗</div>
+        <div class="emoji" style="top: 30%; left: 70%;">💖💝😘🎀</div>
+        <div class="emoji" style="top: 50%; left: 40%;">💕💘💞💌</div>
+        <div class="emoji" style="top: 70%; left: 10%;">😍🎁💗🥰</div>
+        <div class="emoji" style="top: 85%; left: 60%;">💖💋💝💓</div>
+    </div>
+    <div class="text">Touch the heart, but be ready for love overload 💋🔥</div>
+    <div class="heart-container" onclick="showContent()"></div>
+    <div class="message" id="message">💝❤️🎁💋🤗 Chakri kr maghiya chakri 💕💖💘💌</div>
+    <img src="IMG_2553.JPG" id="image" class="image" alt="Fun Image">
+    <script>
+        function showContent() {
+            document.getElementById("message").style.display = "block";
+            document.getElementById("image").style.display = "block";
+        }
+    </script>
+</body>
+</html>
